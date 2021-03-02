@@ -8,6 +8,13 @@ body {
     background-color: rgb(47, 3, 77);
 }
 
-.middle {
+.wrapper {
     border: 5px solid white;
+    height: 90vh;
+    display: flex:
+    justify-content: vertical-align;
+    background-image: url(img/bg1.png);
+    background-size: cover;
+    
+    
 }
