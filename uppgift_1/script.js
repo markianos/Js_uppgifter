@@ -1,0 +1,1 @@
+alert('min JS koppling fungerar och är redo att rocka');
