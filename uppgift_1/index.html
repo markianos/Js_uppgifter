@@ -14,7 +14,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header text-center h4 pt-3 ">REGISTER</div>
+                    <div class="card-header text-center h4 pt-3 card-h4">REGISTER</div>
                     <div class="card-body">
 
                         <form id="regForm">
@@ -24,14 +24,17 @@
                                 <div class="form-group col-md-6 mt-3 p-2">
                                     <label for="firstName">First Name:</label>
                                     <input type="text" id="firstName" class="form-control" placeholder="Enter first name">
-                                </div>
+                                    <div id="firstName-error" class="small text-danger"></div>
+                                    </div>
                                 <div class="form-group col-md-6 mt-3 p-2">
                                     <label for="lastName">Last Name:</label>
                                     <input type="text" id="lastName" class="form-control" placeholder="Enter last name">
+                                    <div id="lastName-error" class="small text-danger"></div>
                                 </div>
                                 <div class="form-group col-md-6 mt-3 p-2">
                                     <label for="email">E-mail:</label>
                                     <input type="text" id="email" class="form-control" placeholder="Enter your e-mail name">
+                                    <div id="email-error" class="small text-danger"></div>
                                 </div>
                                 <div class="form-group col-md-6 mt-3 p-2">
                                     <label for="role">Your Level:</label>
@@ -40,14 +43,17 @@
                                         <option value="Beginner">Beginner</option>
                                         <option value="Advanced">Advanced</option>
                                     </select>
+
                                 </div>
                                 <div class="form-group col-md-6 mt-3 p-2">
                                     <label for="address">Address:</label>
                                     <input type="text" id="address" class="form-control" placeholder="Enter your address">
+                                    <div id="address-error" class="small text-danger"></div>
                                 </div>
                                 <div class="form-group col-md-8 mt-3 p-2">
                                     <input type="checkbox" id="toc" class=" form-check-input ms-1">
                                     <label for="terms" class="form-check-label ms-3">I accept the terms and conditions</label>
+                                    
                                 </div>
                                 <div class="form-group col-md-8 mt-3 p-2">
                                     <button class="btn btn-outline-primary">REGISTER</button>

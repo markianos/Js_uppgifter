@@ -15,6 +15,9 @@ body {
     justify-content: vertical-align;
     background-image: url(img/bg1.png);
     background-size: cover;
-    
-    
+}
+
+.card-h4 {
+    background-color: #6c6490;
+    color: #fff;
 }

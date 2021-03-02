@@ -1,10 +1,52 @@
 // alert('min JS koppling fungerar och är redo att rocka');
 
-const regForm = document.querySelector('#regForm');         // hämtar formuläret via ID
+const regForm = document.querySelector('#regForm');                 // skapar const regForm på hela formuläret via ID #regForm
+const email = document.querySelector('#email');                     // skapar const email via ID #email
 
-regForm.addEventListener('submit', (e) => {                         // Lyssnar efter en submit
-    e.preventDefault();                                             // Förhindrar sidan från att laddas om
+/* ------------------------------->    VALIDATE FUNKTION FÖR TEXT INPUTS */ 
+const validate = (id) => {                                          // Skapar en funktion som heter validate
+    const input = document.querySelector(id);                       // deklarerar en const input som pekar på id
+    const error = document.querySelector(id + '-error');            // deklarerar en const error som pekar på alla ID "# + -error"
 
+    if(input.value.trim() === '') {
+        error.innerText = 'Enter text please'
+        input.focus();
+        return false;
+    }
+    else if (input.value.length < 2) {
+        error.innerText = 'Enter at least 2 characters'
+        return false;
+    }
+    else {
+        error.innerText = ''
+        return true;
+    }
+    
+}
+
+/* ------------------------------->    funktion validateEmail */
+
+const validateEmail = (_email) => {
+    
+}
+
+/* ------------------------------->    ADD EVENTLISTNER PÅ SUBMIT */
+
+regForm.addEventListener('submit', (e) => {                             // lyssnar till en submit i vårt event
+    e.preventDefault();                                                 // förhindrar att sidan laddas om
+
+    validate('#firstName');                                                // kör vår validate funktion på id med firstName
+    validate('#lastName');                                                // kör vår validate funktion på id med lastName
+    validate('#email');                                                // kör vår validate funktion på id med lastName
+    validate('#address');                                                // kör vår validate funktion på id med lastName
+})
+
+
+
+
+
+
+/*
     if(!(e.currentTarget.toc.checked)) {                            // om INTE värdet på #toc finns så... (inte iklickat)
         alert('accept')                                             // öppnar en alert med meddelandet
         return false                                                // hoppar ur från hela funktionen och fortsätter inte
@@ -28,4 +70,4 @@ regForm.addEventListener('submit', (e) => {                         // Lyssnar e
     console.log(user)
 
 
-})
+})*/
