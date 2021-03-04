@@ -45,8 +45,8 @@ const newUser = (user) => {                                                 // s
             <p class="mini ps-2">Level: ${user.skill}</p>
         </div>
         <div class="buttons p-2">
-            <button class="btn btn-info"><i class="fas fa-user-edit"></i></button>
-            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+            <button class="btn btn-info m-2"><i class="fas fa-user-edit"></i></button>
+            <button class="btn btn-danger "><i class="fas fa-trash-alt"></i></button>
         </div>
     </div>    
     `
@@ -118,6 +118,11 @@ const specialCharValidate = (id) => {                                          /
         return false;
     }
     else if (input.value.length < 2) {
+        error.innerText = 'Enter a valid email, ex. "user@mail.com"'
+        input.focus();
+        return false;
+    }
+    else if (!input.value.includes('@')) {
         error.innerText = 'Enter a valid email, ex. "user@mail.com"'
         input.focus();
         return false;
