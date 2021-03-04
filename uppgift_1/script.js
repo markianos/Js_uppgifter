@@ -1,9 +1,9 @@
 // alert('min JS koppling fungerar och är redo att rocka');
 
-const regForm = document.querySelector('#regForm');                 // skapar const regForm på hela formuläret via ID #regForm
-const email = document.querySelector('#email');                     // skapar const email via ID #email
-const checkBox = document.querySelector('#toc')                     // deklarerar att const checkBox är id för #toc
-
+const regForm = document.querySelector('#regForm');                 // deklarerar att const regForm är id #regForm i mitt html dokument, vilket innesluter hela mitt formulär
+const email = document.querySelector('#email');                     // deklarerar att const email  är id #email i mitt html dokument
+const checkBox = document.querySelector('#toc');                    // deklarerar att const checkBox är id #toc i mitt html dokument
+const output = document.querySelector('#output');                   // deklarerar att const output är id #output i mitt html dokument
 
 
 /* ------------------------------->    VALIDATE FUNKTION FÖR TEXT INPUTS */ 

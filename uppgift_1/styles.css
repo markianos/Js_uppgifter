@@ -10,7 +10,7 @@ body {
 
 .wrapper {
     border: 5px solid white;
-    height: 90vh;
+    height: vh;
     display: flex:
     justify-content: vertical-align;
     background-image: url(img/bg1.png);
