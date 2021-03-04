@@ -78,8 +78,60 @@ const validate = (id) => {                                          // Skapar en
     
 }
 
+const specialCharValidate = (id) => {                                          // Skapar en funktion som heter validate
+    const input = document.querySelector(id);                       // deklarerar en const input som pekar på id
+    const error = document.querySelector(id + '-error');            // deklarerar en const error som pekar på alla ID "# + -error"
+
+    if (input.value.includes('å')) {
+        error.innerText = 'The email can not contain the letter å'
+        input.focus();
+        return false;
+    }
+    else if (input.value.includes('ä')) {
+        error.innerText = 'The email can not contain the letter ä'
+        input.focus();
+        return false;
+    }
+    else if (input.value.includes('ö')) {
+        error.innerText = 'The email can not contain the letter ö'
+        input.focus();
+        return false;
+    }
+    else if (input.value.includes('Å')) {
+        error.innerText = 'The email can not contain the letter Å'
+        input.focus();
+        return false;
+    }
+    else if (input.value.includes('Ä')) {
+        error.innerText = 'The email can not contain the letter Ä'
+        input.focus();
+        return false;
+    }
+    else if (input.value.includes('Ö')) {
+        error.innerText = 'The email can not contain the letter Ö'
+        input.focus();
+        return false;
+    }
+    else if (input.value.trim() === '') {
+        error.innerText = 'Enter text please'
+        input.focus();
+        return false;
+    }
+    else if (input.value.length < 2) {
+        error.innerText = 'Enter a valid email, ex. "user@mail.com"'
+        input.focus();
+        return false;
+    }
+    else {
+        error.innerText = ''
+        return true;
+    }
+    
+}
+
+
 const validateEmail = (email) => {                                         // en funktion för validering av email med regular expressions
-    if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.value)) {
+    if(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.value)) {
         email.classList.add('is-valid');                                   // om email är validerad & giltlig lägg till klassen .is-valid
         email.classList.remove('is-invalid');                              // om email är validerad & giltlig ta bort klassen .is-invalid
         email.value.length > 2;
@@ -88,8 +140,8 @@ const validateEmail = (email) => {                                         // en
       else {
         email.classList.remove('is-valid');                                // om email är validerad som ogiltlig ta bort klassen .is-nvalid
         email.classList.add('is-invalid');                                 // om email är validerad som ogiltlig lägg till klassen .is-invalid
-        
         email.focus();                                                     // sätt focus kring email
+        
         return false;                                                       // skicka inte vidare
       }
 }
@@ -116,7 +168,8 @@ regForm.addEventListener('submit', e => {                             // lyssnar
     
     validate('#firstName');                                                // kör vår validate funktion på id med firstName
     validate('#lastName');                                                // kör vår validate funktion på id med lastName
-    validate('#email');                                                   // kör vår validate funktion på id med lastName
+    specialCharValidate('#email')
+    //validate('#email');                                                   // kör vår validate funktion på id med lastName
     validate('#address');                                                // kör vår validate funktion på id med lastName
     
     if(firstName.value.length <2){                                      // om value i firstName är färre än 2 tecken returneras false och går inte vidare
@@ -130,6 +183,7 @@ regForm.addEventListener('submit', e => {                             // lyssnar
     }
     
     validateEmail(email);
+    
 
 
     if(!(e.currentTarget.toc.checked)) {
@@ -137,7 +191,7 @@ regForm.addEventListener('submit', e => {                             // lyssnar
         return false
       }
 
-      if( validate('#firstName') &&  validate('#lastName') && validate('#email') && validate('#address') && validateEmail(email)){
+      if( validate('#firstName') &&  validate('#lastName') && specialCharValidate('#email') && validate('#address') && validateEmail(email)){
       createUser(firstName.value, lastName.value, email.value, address.value, skill.value);                                                           // kör createUser funktionen
       }
 
