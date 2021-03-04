@@ -158,21 +158,31 @@ const validateCheckBox = (checkbox) => {
         return true
     }
 }
-
+/* ------------------------------->    RESET FORMULÄR */
+const resetAll = () => {
+    document.querySelectorAll('input').forEach(input => {
+      input.value = '';
+      
+      input.classList.remove('is-valid');
+    })
+    document.querySelectorAll('select').forEach(select => {
+        select.value = '';
+    })
+  }
 
 /* ------------------------------->    ADD EVENTLISTNER PÅ SUBMIT */
 
-regForm.addEventListener('submit', e => {                             // lyssnar till en submit i vårt event
-    e.preventDefault();                                                 // förhindrar att sidan laddas om
+regForm.addEventListener('submit', e => {                                    // lyssnar till en submit i vårt event
+    e.preventDefault();                                                      // förhindrar att sidan laddas om
     
     
-    validate('#firstName');                                                // kör vår validate funktion på id med firstName
-    validate('#lastName');                                                // kör vår validate funktion på id med lastName
+    validate('#firstName');                                                  // kör vår validate funktion på id med firstName
+    validate('#lastName');                                                   // kör vår validate funktion på id med lastName
     specialCharValidate('#email')
-    //validate('#email');                                                   // kör vår validate funktion på id med lastName
-    validate('#address');                                                // kör vår validate funktion på id med lastName
+    //validate('#email');                                                    // kör vår validate funktion på id med lastName
+    validate('#address');                                                    // kör vår validate funktion på id med lastName
     
-    if(firstName.value.length <2){                                      // om value i firstName är färre än 2 tecken returneras false och går inte vidare
+    if(firstName.value.length <2){                                           // om value i firstName är färre än 2 tecken returneras false och går inte vidare
         return false
     }
     else if(lastName.value.length <2){                                       // om value i lastName är färre än 2 tecken returneras false och går inte vidare
@@ -182,7 +192,7 @@ regForm.addEventListener('submit', e => {                             // lyssnar
         return false
     }
     
-    validateEmail(email);
+    validateEmail(email);                                                   
     
 
 
@@ -194,6 +204,8 @@ regForm.addEventListener('submit', e => {                             // lyssnar
       if( validate('#firstName') &&  validate('#lastName') && specialCharValidate('#email') && validate('#address') && validateEmail(email)){
       createUser(firstName.value, lastName.value, email.value, address.value, skill.value);                                                           // kör createUser funktionen
       }
+
+      resetAll();
 
 })
     
