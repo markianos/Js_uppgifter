@@ -56,7 +56,7 @@ const newUser = (user) => {                                                 // s
 //-------------------------------------------------------------------------//
 
 
-/* ------------------------------->    VALIDATE FUNKTION FÖR TEXT INPUTS */ 
+/* ------------------------------->    VALIDATE ERROR-TEXT FUNKTION FÖR TEXT INPUTS */ 
 const validate = (id) => {                                          // Skapar en funktion som heter validate
     const input = document.querySelector(id);                       // deklarerar en const input som pekar på id
     const error = document.querySelector(id + '-error');            // deklarerar en const error som pekar på alla ID "# + -error"
@@ -78,17 +78,18 @@ const validate = (id) => {                                          // Skapar en
     
 }
 
-const validateEmail = (_email) => {                                         // en funktion för validering av email med regular expressions
-    if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(_email.value)) {
-        _email.classList.add('is-valid');                                   // om email är validerad & giltlig lägg till klassen .is-valid
-        _email.classList.remove('is-invalid');                              // om email är validerad & giltlig ta bort klassen .is-invalid
+const validateEmail = (email) => {                                         // en funktion för validering av email med regular expressions
+    if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.value)) {
+        email.classList.add('is-valid');                                   // om email är validerad & giltlig lägg till klassen .is-valid
+        email.classList.remove('is-invalid');                              // om email är validerad & giltlig ta bort klassen .is-invalid
+        email.value.length > 2;
         return true;                                                        // skicka vidare
       }
       else {
-        _email.classList.remove('is-valid');                                // om email är validerad som ogiltlig ta bort klassen .is-nvalid
-        _email.classList.add('is-invalid');                                 // om email är validerad som ogiltlig lägg till klassen .is-invalid
+        email.classList.remove('is-valid');                                // om email är validerad som ogiltlig ta bort klassen .is-nvalid
+        email.classList.add('is-invalid');                                 // om email är validerad som ogiltlig lägg till klassen .is-invalid
         
-       // _email.focus();                                                     // sätt focus kring email
+        email.focus();                                                     // sätt focus kring email
         return false;                                                       // skicka inte vidare
       }
 }
@@ -105,6 +106,8 @@ const validateCheckBox = (checkbox) => {
         return true
     }
 }
+
+
 /* ------------------------------->    ADD EVENTLISTNER PÅ SUBMIT */
 
 regForm.addEventListener('submit', e => {                             // lyssnar till en submit i vårt event
@@ -134,9 +137,9 @@ regForm.addEventListener('submit', e => {                             // lyssnar
         return false
       }
 
-    if(firstName.value !== '' && lastName.value !== '' && email.value !== '' && address.value !== '' && skill.value !== '' && checkBox.value !== '' ) { //om inte följande value är tomma...
-        createUser(firstName.value, lastName.value, email.value, address.value, skill.value);                                                           // kör createUser funktionen
-    }
+      if( validate('#firstName') &&  validate('#lastName') && validate('#email') && validate('#address') && validateEmail(email)){
+      createUser(firstName.value, lastName.value, email.value, address.value, skill.value);                                                           // kör createUser funktionen
+      }
 
-   
 })
+    
