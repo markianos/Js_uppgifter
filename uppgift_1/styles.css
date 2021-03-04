@@ -12,7 +12,8 @@ body {
     border: 5px solid white;
     height: vh;
     display: flex:
-    justify-content: vertical-align;
+    justify-content: center;
+    align-items: center;
     background-image: url(img/bg1.png);
     background-size: cover;
 }

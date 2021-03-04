@@ -5,6 +5,17 @@ const email = document.querySelector('#email');                     // deklarera
 const checkBox = document.querySelector('#toc');                    // deklarerar att const checkBox är id #toc i mitt html dokument
 const output = document.querySelector('#output');                   // deklarerar att const output är id #output i mitt html dokument
 
+const users = []
+
+class user {
+    constructor(firstName, lastName, email, address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.id = Date.now().toString();
+    }
+}
 
 /* ------------------------------->    VALIDATE FUNKTION FÖR TEXT INPUTS */ 
 const validate = (id) => {                                          // Skapar en funktion som heter validate
@@ -59,14 +70,42 @@ const validateEmail = (_email) => {                                         // e
       }
 }
 
+/* ------------------------------->    FUNKTIONEN createUser() */
+const createUser = (firstName, lastName, email, address) => {               // skapar funktionen createUser 
+    const user = new User(firstName, lastName, email, address);             // deklarerar const user att vara new user
 
+    users.push(user);                                                       // lägger till/pushar till vår array users[] 
+    output.insertAdjacentHTML('beforeend', newUser(user))                                           // väljer vår output och att vi ska skriva in HTML innan slutet av vårt element som last child
+}
 
+/* ------------------------------->    FUNKTIONEN newUser() med TEMPLATE */
 
+const newUser = (user) => {                                                 // skapar newUser med template av html sklett som placeras innanför backticks och där information hämtas från vår user input
+    let template = `                                            
+    <div class="border rounded bg-white p-2 d-flex justify-content-between align-items-center mb-2" id="${user.id}">
+        <div class="text">
+            <h4 class="ps-2 m-0">${user.firstName} ${user.lastName}</h4>
+            <p  class="ps-2">${user.address}</p>
+            <small class="ps-2 text-danger">${user.email}</small>
+        </div>
+        <div class="buttons p-2">
+            <button class="btn btn-info"><i class="fas fa-user-edit"></i></button>
+            <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        </div>
+    </div>    
+    `
+    return template
+}
 
+ 
 /* ------------------------------->    ADD EVENTLISTNER PÅ SUBMIT */
 
-regForm.addEventListener('submit', (e) => {                             // lyssnar till en submit i vårt event
+regForm.addEventListener('submit', e => {                             // lyssnar till en submit i vårt event
     e.preventDefault();                                                 // förhindrar att sidan laddas om
+ 
+    if(firstName.value !== '' && lastName.value !== '' && email.value !== '' && address.value !== '') { //om inte följande value är tomma...
+        createUser(firstName.value, lastName.value, email.value, address.value);                        // öppna createUser funktionen
+    }
 
     validate('#firstName');                                                // kör vår validate funktion på id med firstName
     validate('#lastName');                                                // kör vår validate funktion på id med lastName
