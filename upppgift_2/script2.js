@@ -8,7 +8,8 @@ const output = document.querySelector('#output');                   // deklarera
 let todos = []                                                     // Skapar en todos array som är en let, vilket senare kan ändras   
 
 const fetchTodos = () => {                                          // skapar funktionen fetchTodos
-    fetch('https://jsonplaceholder.typicode.com/todos/?userId=2/?_limit=10')             // hämtar/fetchar vår json placeholders med user id 2 och en limit på 10st objekt
+    //fetch('https://jsonplaceholder.typicode.com/todos/?userId=2/?_limit=10') // hämtar/fetchar vår json placeholders med user id 2 och en limit på 10st objekt
+    fetch('https://jsonplaceholder.typicode.com/todos/?_limit=10')             // hämtar/fetchar vår json placeholders en limit på 10st objekt
         .then(res => res.json())                                    // resultaten från json databas
         .then(data => {                                             // datan från json
             todos = data;                                           // data från json läggs in i vår todos array
