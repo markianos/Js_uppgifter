@@ -8,7 +8,7 @@ const output = document.querySelector('#output');                   // deklarera
 let todos = []                                                     // Skapar en todos array som är en let, vilket senare kan ändras   
 
 const fetchTodos = () => {                                          // skapar funktionen fetchTodos
-    fetch('https://jsonplaceholder.typicode.com/todos/?_limit=10')             // hämtar/fetchar vår json placeholders
+    fetch('https://jsonplaceholder.typicode.com/todos/?userId=2/?_limit=10')             // hämtar/fetchar vår json placeholders med user id 2 och en limit på 10st objekt
         .then(res => res.json())                                    // resultaten från json databas
         .then(data => {                                             // datan från json
             todos = data;                                           // data från json läggs in i vår todos array
@@ -39,6 +39,9 @@ const newTodo = (todo) => {                                             // skapa
 
     let btnTrash = document.createElement('button');                                                    // skapar en button med id btnTrash
     btnTrash.classList.add('btn', 'btn-danger');                                                        // lägger till klasser
+    btnTrash.addEventListener('click', () => {                                                          // skapar en eventlistner för btnTrash som lyssnar på click
+        console.log(todo.id)                                                                            // hämtar todo.id vid musklick och skriver ut i konsolen
+    })
 
     let trashIcon = document.createElement('i');                                                        // lägger till en ikon med id "trashIcon"
     trashIcon.classList.add('fas', 'fa-trash-alt');                                                     // lägger till klasser (hämtas från font-awsome)
@@ -50,3 +53,62 @@ const newTodo = (todo) => {                                             // skapa
     output.appendChild(taskWrapper);                                                                    // lägger in taskWrapper som child i output
 
 }
+
+const addTodo = (title) => {
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        body: JSON.stringify({
+            title,
+            userId: 2,
+            completed: false
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+
+        let newTodo = {
+            ...data,
+            id: Date.now().toString()
+        }
+        console.log(newTodo);
+        todos.unshift(newTodo);
+        listTodos();
+    })
+}
+
+/* ------------------------------->   Validering av Todo input <------------- */
+
+const todoValidate = (id) => {                                      // Skapar en funktion som heter todovalidate
+    const input = document.querySelector(id);                       // deklarerar en const input som pekar på id
+    const error = document.querySelector(id + '-error');            // deklarerar en const error som pekar på  ID "# + -error"
+
+    if (input.value.trim() === '') {                                // om värdet är tomt så...
+        error.innerText = "You can't do nothing...Enter a todo please"                     // skriv ut i ID-error  "Enter a todo please"
+        input.focus();                                              // fokus kring input
+        return false;                                               // returnera false dvs. avbryt
+    }
+    else {                                                          // annars...
+        error.innerText = ''                                        // skriv inte ut något i ID-error    
+        return true;                                                // returnera true och gå vidare
+    }
+}
+
+
+todoForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    todoValidate('#todoInput');                                              // kör vår todoValidate funktion på id #todoInput
+      
+      if( todoValidate('#todoInput')){                                       // Om funktionen todoValidate går igenom på #todoInput så,,,
+        addTodo(input.value)
+        input.value = '';                                           // kör createUser funktionen med värdet i todoInput
+      }
+
+
+
+
+})
