@@ -44,3 +44,7 @@ label {
     font-size: 1.2rem;
     color: #2b335b;
 }
+
+.fa-trash-alt {
+    pointer-events: none;   /* går ej att klicka på klassen*/
+}

@@ -61,9 +61,9 @@ const addTodo = (title) => {
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
         },
-        body: JSON.stringify({
-            title,
-            userId: 2,
+        body: JSON.stringify({                                                                          // gör om till JSON från javascript
+            title,                                                                                      // skriver ut title som vi anger i vår input
+            userId: 2,                                                                                  // skriver ut som user 2
             completed: false
         })
     })
@@ -80,6 +80,8 @@ const addTodo = (title) => {
         listTodos();
     })
 }
+
+
 
 /* ------------------------------->   Validering av Todo input <------------- */
 
@@ -109,7 +111,9 @@ todoForm.addEventListener('submit', e => {
         input.value = '';                                           // kör createUser funktionen med värdet i todoInput
       }
 
+})
 
-
-
+output.addEventListener('click', e => {
+    todos = todos.filter(todo => todo.id !== e.target.parentNode.id)
+    listTodos();
 })
