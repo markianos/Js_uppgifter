@@ -26,7 +26,7 @@ const listTodos = () => {                                                       
         newTodo(todo);                                                                                  // skapa en newTodo() där vi placerar varje objekt
     })
 }
-fetchTodos();                                                                                           // kör funktionen fetchTodos()
+fetchTodos();                                                                                           // kör funktionen fetchTodos() för att hämta våra todos
 
 
 
@@ -121,14 +121,15 @@ todoForm.addEventListener('submit', e => {
 
 })
 
+/* ------------------------------->   Eventlistner på output click med funktionen deleteTodo() <------------- */
 
-output.addEventListener('click', deleteTodo);
-
-function deleteTodo(e) {
-    const item = e.target;
-    if(item.classList[0] === 'btn-trash'){
-        const parent = item.parentNode.parentNode;
-        parent.remove();
+output.addEventListener('click', deleteTodo);                                                           // sätter en eventlistner att köra deleteTodo när click aktiveras
+        
+function deleteTodo(e) {                                                                                // funktionen deleteTodo()
+    const item = e.target;                                                                              // deklarerar item som event.target
+    if(item.classList[0] === 'btn-trash'){                                                              // OM item har en klass med "btn-trash" som första klass så...
+        const parent = item.parentNode.parentNode;                                                      // deklarerar parent att vara två föräldrar över vår item
+        parent.remove();                                                                                // ta bort parent
     }
 }
  
