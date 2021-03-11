@@ -108,7 +108,7 @@ const todoValidate = (id) => {                                                  
     }
 }
 
-/* ------------------------------->   Eventlistner på todoForm <------------- */
+/* ------------------>   Eventlistner på todoForm <------------- */
 todoForm.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -121,7 +121,7 @@ todoForm.addEventListener('submit', e => {
 
 })
 
-/* ------------------------------->   Eventlistner på output click med funktionen deleteTodo() <------------- */
+/* ------------------>   Eventlistner på output click med funktionen deleteTodo() <------------- */
 
 output.addEventListener('click', deleteTodo);                                                           // sätter en eventlistner att köra deleteTodo när click aktiveras
         
